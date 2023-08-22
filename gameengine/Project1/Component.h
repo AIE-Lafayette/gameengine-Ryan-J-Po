@@ -1,8 +1,8 @@
 #pragma once
+#include "Entity.h"
 
 namespace GameEngine
 {
-	class Entity;
 
 	class Component
 	{
@@ -14,6 +14,7 @@ namespace GameEngine
 		virtual void draw() {}
 		virtual void end() {}
 
+
 		virtual void onEnable() {}
 		virtual void onDisable() {}
 
@@ -21,11 +22,13 @@ namespace GameEngine
 		void setEnabled(bool enabled);
 
 		Entity* getOwner() { return m_owner; }
-		void setOwner(Entity* entity) { m_owner = entity; }
 
 	private:
+		void setOwner(Entity* entity) { m_owner = entity; }
 		bool m_enabled;
-		Entity* m_owner;
+		Entity* m_owner = nullptr;
+
+		friend Entity;
 	};
 }
 

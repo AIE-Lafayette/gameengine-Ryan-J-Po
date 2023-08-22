@@ -1,4 +1,5 @@
 #pragma once
+#include "List.h"
 
 namespace GameEngine
 {
@@ -9,7 +10,7 @@ namespace GameEngine
     public:
         Entity();
 
-        void start();
+        void start(); 
         void update(double deltaTime);
         void end();
         void draw();
@@ -21,6 +22,27 @@ namespace GameEngine
         virtual void onEnable() {}
         virtual void onDisable() {}
 
+        /// <summary>
+       /// Returns nullptr if the variable can't be cast as the type.
+       /// Otherwise, returns a pointer to the variable of the desired cast type.
+       /// dynamic_cast<type*>(pointer name)
+       /// </summary>
+       
+        /// <summary>
+        /// for (type variableName : listName)
+        /// {
+        /// 
+        /// }
+        /// </summary>
+        /// <param name="component"></param>
+        void addComponent(Component* component);
+        
+        template<typename T>
+        T* addComponent();
+
+        template<typename T>
+        T* getComponent();
+
         bool getStarted() { return m_started; }
 
         bool getEnabled() { return m_enabled; };
@@ -29,6 +51,17 @@ namespace GameEngine
     private:
         bool m_enabled;
         bool m_started;
+        List<Component*> m_components;
     };
+    template<typename T>
+    inline T* Entity::addComponent()
+    {
+        return nullptr;
+    }
+    template<typename T>
+    inline T* Entity::getComponent()
+    {
+        return nullptr;
+    }
 }
 
