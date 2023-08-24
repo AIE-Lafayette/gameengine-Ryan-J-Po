@@ -1,5 +1,6 @@
 #include "Engine.h"
 #include <chrono>
+#include "Scene.h"
 
 
 void GameEngine::Engine::run()
@@ -28,5 +29,20 @@ void GameEngine::Engine::run()
 
 void GameEngine::Engine::start()
 {
+	m_currentScene->start();
+}
 
+void GameEngine::Engine::update(double deltaTime)
+{
+	m_currentScene->update(deltaTime);
+}
+
+void GameEngine::Engine::end()
+{
+	m_currentScene->end();
+}
+
+void GameEngine::Engine::draw()
+{
+	m_currentScene->draw();
 }

@@ -2,6 +2,8 @@
 
 namespace GameEngine
 {
+	class Scene;
+
 	class Engine
 	{
 	public:
@@ -9,8 +11,11 @@ namespace GameEngine
 
 		static double getDeltaTime() { return m_deltaTime; }
 
-		bool getApplicationShouldClose() { return m_applicationShouldClose; };
-		void setApplicationShouldClose(bool value) { m_applicationShouldClose = value; }
+		static void setCurrentScene(Scene* scene) { m_currentScene = scene; }
+		static Scene* getCurrentScene() { return m_currentScene; }
+
+		static bool getApplicationShouldClose() { return m_applicationShouldClose; };
+		static void setApplicationShouldClose(bool value) { m_applicationShouldClose = value; }
 
 		void run();
 	private:
@@ -20,8 +25,9 @@ namespace GameEngine
 		void draw();
 
 	private:
-		bool m_applicationShouldClose = false;
+		static bool m_applicationShouldClose;
 		static double m_deltaTime;
+		static Scene* m_currentScene;
 	};
 
 }
