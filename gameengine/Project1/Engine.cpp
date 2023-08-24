@@ -1,12 +1,16 @@
 #include "Engine.h"
 #include <chrono>
 #include "Scene.h"
-
+#include "Window.h"
 
 void GameEngine::Engine::run()
 {
 	double lastTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()).count();
 	double deltaTime = 0;
+
+	GameGraphics::Window window = GameGraphics::Window(800, 800, "Test Application");
+	window.open();
+	window.setTargetFrameRate(60);
 
 	start();
 
@@ -20,7 +24,10 @@ void GameEngine::Engine::run()
 		m_deltaTime = deltaTime / 1000;
 
 		update(m_deltaTime);
+
+		window.beginDrawing();
 		draw();
+		window.endDrawing();
 
 	}
 

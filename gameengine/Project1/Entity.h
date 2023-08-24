@@ -4,6 +4,7 @@
 namespace GameEngine
 {
 	class Component;
+    class TransformComponent;
 
     class Entity
     {
@@ -31,6 +32,7 @@ namespace GameEngine
         T* getComponent();
 
         bool getStarted() { return m_started; }
+        TransformComponent* getTransform() { return m_transform; }
 
         bool getEnabled() { return m_enabled; };
         void setEnabled(bool value);
@@ -39,6 +41,7 @@ namespace GameEngine
         bool m_enabled;
         bool m_started;
         List<Component*> m_components;
+        TransformComponent* m_transform;
     };
 
     template<typename T>
