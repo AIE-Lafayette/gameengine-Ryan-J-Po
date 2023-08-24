@@ -3,12 +3,27 @@
 #include "Scene.h"
 #include "Window.h"
 
+GameEngine::Scene* GameEngine::Engine::m_currentScene = nullptr;
+double GameEngine::Engine::m_deltaTime = 0;
+
+GameGraphics::Window window;
+
+bool GameEngine::Engine::getApplicationShouldClose()
+{
+	return window.getShouldClose();
+}
+
+void GameEngine::Engine::closeApplication()
+{
+	window.close();
+}
+
 void GameEngine::Engine::run()
 {
 	double lastTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()).count();
 	double deltaTime = 0;
 
-	GameGraphics::Window window = GameGraphics::Window(800, 800, "Test Application");
+	window = GameGraphics::Window(800, 800, "Test Application");
 	window.open();
 	window.setTargetFrameRate(60);
 
@@ -32,6 +47,8 @@ void GameEngine::Engine::run()
 	}
 
 	end();
+
+	window.close();
 }
 
 void GameEngine::Engine::start()
