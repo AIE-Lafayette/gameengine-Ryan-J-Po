@@ -50,7 +50,7 @@ namespace GameEngine
         Component* component = new T();
 
         component->setOwner(this);
-        m_components.add(components);
+        m_components.add(component);
 
         return (T*)component;
     }
