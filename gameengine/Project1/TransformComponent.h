@@ -14,6 +14,7 @@ namespace GameEngine
 
         void setLocalPosition(GameMath::Vector3 position);
         void setLocalPosition(float x, float y);
+
         GameMath::Vector3 getLocalPosition();
         GameMath::Vector3 getGlobalPosition();
 
@@ -21,6 +22,7 @@ namespace GameEngine
         GameMath::Vector3 getLocalRotation();
 
         void setLocalScale(GameMath::Vector3 scale);
+        void setLocalScale(float x, float y);
         GameMath::Vector3 getLocalScale();
 
         GameMath::Vector3 getGlobalScale();

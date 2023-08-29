@@ -1,7 +1,7 @@
 #pragma once
 #include <Scene.h>
 
-class TestScene : GameEngine::Scene
+class TestScene : public GameEngine::Scene
 {
 public:
 	void onStart() override;

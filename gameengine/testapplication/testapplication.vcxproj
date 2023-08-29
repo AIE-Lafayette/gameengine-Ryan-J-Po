@@ -71,7 +71,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)gamegraphics;$(SolutionDir)Project1;$(SolutionDir)Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)gamephysics;$(SolutionDir)gamegraphics;$(SolutionDir)Project1;$(SolutionDir)Include;$(IncludePath)</IncludePath>
     <IntDir>$(SolutionDir)Intermediate\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -137,6 +137,9 @@
   <ItemGroup>
     <ProjectReference Include="..\gamegraphics\gamegraphics.vcxproj">
       <Project>{dcb51181-d28a-4264-be6c-eeddc8bf6d24}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\gamephysics\gamephysics.vcxproj">
+      <Project>{a5383656-3df2-49c8-98a0-0abd37be16dd}</Project>
     </ProjectReference>
     <ProjectReference Include="..\Project1\Project1.vcxproj">
       <Project>{56964d85-d1bd-40e7-a737-08d43087a7cd}</Project>
