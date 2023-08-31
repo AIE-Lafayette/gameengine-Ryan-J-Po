@@ -1,6 +1,11 @@
 #pragma once
 #include "List.h"
 
+namespace GamePhysics
+{
+    struct Collision;
+}
+
 namespace GameEngine
 {
 	class Component;
@@ -22,6 +27,7 @@ namespace GameEngine
         virtual void onDraw() {}
         virtual void onEnable() {}
         virtual void onDisable() {}
+        virtual void onCollision(GamePhysics::Collision* other);
 
         void addComponent(Component* component);
         

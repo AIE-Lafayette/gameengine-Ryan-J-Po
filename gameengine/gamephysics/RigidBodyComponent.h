@@ -1,5 +1,5 @@
 #pragma once
-#include <Component.h>
+#include "Project1/Component.h"
 #include <GameMath/Vector3.h>
 #include <GameMath/Vector2.h>
 namespace GamePhysics
@@ -18,8 +18,11 @@ namespace GamePhysics
 		float getGravity() { return m_gravity; }
 		void setGravity(float gravity) { m_gravity = gravity; }
 
-		float getMass() { return m_mass; }
-		void setMass(float mass) {}
+		float getMass();
+		void setMass(float mass) { m_mass = mass; }
+
+		bool getIsKinematic() { return m_isKinematic; }
+		void setIsKinematic(bool value) { m_isKinematic = value; }
 
 		void applyForce(GameMath::Vector3 force);
 		void applyForce(GameMath::Vector2 force);
@@ -32,6 +35,9 @@ namespace GamePhysics
 	private:
 		float m_mass = 1;
 		float m_gravity = 9.81f;
+
+		bool m_isKinematic;
+
 		GameMath::Vector3 m_velocity = GameMath::Vector3();
 	};
 }

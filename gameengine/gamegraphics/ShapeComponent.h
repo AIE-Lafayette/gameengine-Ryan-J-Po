@@ -1,5 +1,5 @@
 #pragma once
-#include "TransformComponent.h"
+#include "Project1/TransformComponent.h"
 
 namespace GameGraphics
 {

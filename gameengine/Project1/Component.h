@@ -17,6 +17,7 @@ namespace GameEngine
 
 		virtual void onEnable() {}
 		virtual void onDisable() {}
+		virtual void onCollision(GamePhysics::Collision* other) {};
 
 		bool getEnabled() { return m_enabled; }
 		void setEnabled(bool enabled);

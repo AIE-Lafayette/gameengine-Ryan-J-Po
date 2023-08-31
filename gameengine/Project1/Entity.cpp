@@ -53,6 +53,14 @@ void GameEngine::Entity::draw()
 	onDraw();
 }
 
+void GameEngine::Entity::onCollision(GamePhysics::Collision* other)
+{
+	for (Component* component : m_components)
+	{
+		component->onCollision(other);
+	}
+}
+
 void GameEngine::Entity::addComponent(Component* component)
 {
 	component->setOwner(this);
