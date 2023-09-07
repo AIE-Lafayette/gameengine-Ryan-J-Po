@@ -8,6 +8,7 @@ namespace GamePhysics
 		CircleColliderComponent(float radius) : ColliderComponent() { m_radius = radius; }
 
 		GamePhysics::Collision* checkCollisionCircle(CircleColliderComponent* other) override;
+		GamePhysics::Collision* checkCollisionAABB(AABBColliderComponent* other) override;
 
 		void draw() override;
 

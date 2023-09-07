@@ -7,8 +7,8 @@ namespace GamePhysics
     public:
         AABBColliderComponent(float width, float height);
 
-        GamePhysics::Collision* checkCollisionCircle(CircleColliderComponent* other);
-        GamePhysics::Collision* checkCollisionAABB(AABBColliderComponent* other);
+        GamePhysics::Collision* checkCollisionCircle(CircleColliderComponent* other) override;
+        GamePhysics::Collision* checkCollisionAABB(AABBColliderComponent* other) override;
 
         void draw() override;
 
