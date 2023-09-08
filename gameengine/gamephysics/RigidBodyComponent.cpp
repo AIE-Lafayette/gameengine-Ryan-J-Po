@@ -1,5 +1,6 @@
 #include "RigidBodyComponent.h"
 #include "Project1/TransformComponent.h"
+#include "ColliderComponent.h"
 
 void GamePhysics::RigidBodyComponent::setVelocity3D(float x, float y, float z)
 {
@@ -65,10 +66,18 @@ void GamePhysics::RigidBodyComponent::applyForceToActor(RigidBodyComponent* othe
 void GamePhysics::RigidBodyComponent::resolveCollision(GamePhysics::Collision* collisionData)
 {
 	//Calculate average elasticity
-	//average = the sum of e1 and e2 / 2
-	// j = (-(1+e) * dot(vA - vB, n)) / (dot(n,n) * (1/mA + 1/mB))
+	//average = the sum of e1 and e2 / 2       e= elasticity     j = force magnitude    vA = velocity of obj1    vB = velocity of obj2  n = normal mA = mass of obj1  mB = mass of obj2
+	float averageElasticity = (m_elasticity + collisionData->collider->getRigidBody()->m_elasticity) / 2;
+	
+	// j = (-(1+e) * dot(vA - vB, n)) / (dot(n,n * (1/mA + 1/mB))
+	float j = (-(1 + averageElasticity) * GameMath::Vector3::dotProduct(m_velocity - collisionData->collider->getRigidBody()->m_velocity, collisionData->normal)) /
+		GameMath::Vector3::dotProduct(collisionData->normal, collisionData->normal * (1 / getMass() + 1 / collisionData->collider->getRigidBody()->getMass()));
 
 	//F = n * -j
+	GameMath::Vector3 force = collisionData->normal * -j;
+
+	applyForceToActor(collisionData->collider->getRigidBody(), force);
+	
 }
 
 void GamePhysics::RigidBodyComponent::update(double deltaTime)

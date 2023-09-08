@@ -1,6 +1,7 @@
 #include "Scene.h"
 #include "Entity.h"
 #include "gamephysics/ColliderComponent.h"
+#include "gamephysics/RigidBodyComponent.h"
 
 void GameEngine::Scene::start()
 {
@@ -57,6 +58,8 @@ void GameEngine::Scene::update(double deltaTime)
 				collisionData2->normal = collisionData1->normal * -1;
 
 				collider2->getOwner()->onCollision(collisionData2);
+
+				collider1->getRigidBody()->resolveCollision(collisionData1);
 			}
 		}
 	}

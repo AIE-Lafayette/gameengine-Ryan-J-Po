@@ -22,13 +22,15 @@ void TestScene::onStart()
 	GameEngine::Entity* circle2 = new GameEngine::Entity();
 	circle2->addComponent(new GameGraphics::ShapeComponent(GameGraphics::CIRCLE));
 
-	//GamePhysics::RigidBodyComponent* rigidBodyCircle2 = circle2->addComponent <GamePhysics::RigidBodyComponent>();
+	GamePhysics::RigidBodyComponent* rigidBodyCircle2 = circle2->addComponent <GamePhysics::RigidBodyComponent>();
 	circle2->addComponent(new GamePhysics::CircleColliderComponent(60));
 
 	//rigidBody->applyForce({ 100, -100 });
 
 	circle2->getTransform()->setLocalPosition(100, 500);
 	circle2->getTransform()->setLocalScale(50, 50);
+
+	rigidBodyCircle2->setGravity(-10);
 
 	//New entity - box
 	GameEngine::Entity* box = new GameEngine::Entity();
