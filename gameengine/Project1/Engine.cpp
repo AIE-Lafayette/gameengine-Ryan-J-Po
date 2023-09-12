@@ -5,6 +5,7 @@
 
 GameEngine::Scene* GameEngine::Engine::m_currentScene = nullptr;
 double GameEngine::Engine::m_deltaTime = 0;
+double GameEngine::Engine::m_fixedTimeStep = 0.01;
 
 GameGraphics::Window window;
 
@@ -23,7 +24,7 @@ void GameEngine::Engine::run()
 	double lastTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()).count();
 	double deltaTime = 0;
 	double accumulatedTime = 0;
-	setTimeStep(0.01);
+	
 
 	window = GameGraphics::Window(800, 800, "Test Application");
 	window.open();
@@ -33,6 +34,8 @@ void GameEngine::Engine::run()
 
 	while (!getApplicationShouldClose())
 	{
+		//setTimeStep(0.01);
+		double fixedTimeStep = getTimeStep();
 		double currentTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()).count();
 		deltaTime = currentTime - lastTime;
 
@@ -40,7 +43,15 @@ void GameEngine::Engine::run()
 
 		m_deltaTime = deltaTime / 1000;
 
+		accumulatedTime += deltaTime;
+
 		update(m_deltaTime);
+
+		while (accumulatedTime >= fixedTimeStep)
+		{
+			fixedUpdate();
+			accumulatedTime -= fixedTimeStep;
+		}
 
 		window.beginDrawing();
 		draw();

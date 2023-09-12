@@ -35,7 +35,7 @@ namespace GamePhysics
 
 		void resolveCollision(GamePhysics::Collision* collisionData);
 
-		void update(double deltaTime) override;
+		void fixedUpdate() override;
 
 	private:
 		void applyContactForce(GamePhysics::Collision* other);

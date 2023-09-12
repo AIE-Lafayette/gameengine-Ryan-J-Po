@@ -18,11 +18,13 @@ namespace GameEngine
 
         void start(); 
         void update(double deltaTime);
+        void fixedUpdate();
         void end();
         void draw();
 
         virtual void onStart() {}
         virtual void onUpdate(double deltaTime) {}
+        virtual void onFixedUpdate() {}
         virtual void onEnd() {}
         virtual void onDraw() {}
         virtual void onEnable() {}

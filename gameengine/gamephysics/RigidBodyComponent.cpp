@@ -1,6 +1,7 @@
 #include "RigidBodyComponent.h"
 #include "Project1/TransformComponent.h"
 #include "ColliderComponent.h"
+#include "Project1/Engine.h"
 
 void GamePhysics::RigidBodyComponent::setVelocity3D(float x, float y, float z)
 {
@@ -77,24 +78,23 @@ void GamePhysics::RigidBodyComponent::applyContactForce(GamePhysics::Collision* 
 		displacement1 = massOther / (mass + massOther);
 	}
 
-	if (!getIsKinematic)
+	if (!getIsKinematic())
 	{
-		GameMath::Vector3 position = getOwner()->getTransform()->getGlobalPosition();
-		getOwner()->getTransform()->setLocalPosition(position - (displacement1 * other->normal * penetrationDistance));
+		applyForceToActor(other->collider->getRigidBody(), other->normal * displacement1 * penetrationDistance);
 	}
 
-	float displacement2 = massOther;
+	/*float displacement2 = massOther;
 
 	if (mass != INFINITY)
 	{
 		displacement2 = -(mass / mass + massOther);
-	}
+	}*/
 
 	if (!other->collider->getRigidBody()->getIsKinematic())
 	{
 		GameMath::Vector3 position = other->collider->getOwner()->getTransform()->getGlobalPosition();
 
-		other->collider->getOwner()->getTransform()->setLocalPosition(position + (displacement2 * other->normal * penetrationDistance));
+		other->collider->getOwner()->getTransform()->setLocalPosition(position + (other->normal * penetrationDistance));
 	}
 }
 
@@ -116,8 +116,10 @@ void GamePhysics::RigidBodyComponent::resolveCollision(GamePhysics::Collision* c
 	
 }
 
-void GamePhysics::RigidBodyComponent::update(double deltaTime)
+void GamePhysics::RigidBodyComponent::fixedUpdate()
 {
+	double deltaTime = GameEngine::Engine::getDeltaTime();
+
 	GameMath::Vector3 position = getOwner()->getTransform()->getLocalPosition();
 	getOwner()->getTransform()->setLocalPosition(position + getVelocity3D() * deltaTime);
 

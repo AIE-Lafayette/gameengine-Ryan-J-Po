@@ -31,6 +31,15 @@ void GameEngine::Entity::update(double deltaTime)
 	onUpdate(deltaTime);
 }
 
+void GameEngine::Entity::fixedUpdate()
+{
+	for (Component* component : m_components)
+	{
+		if (component->getEnabled())
+			component->fixedUpdate();
+	}
+}
+
 void GameEngine::Entity::end()
 {
 	for (Component* component : m_components)
