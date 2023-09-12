@@ -25,7 +25,7 @@ GamePhysics::Collision* GamePhysics::AABBColliderComponent::checkCollisionCircle
 	{
 		direction.x = m_width / 2;
 	}
-	if (direction.x < -m_width / 2)
+	else if (direction.x < -m_width / 2)
 	{
 		direction.x = -m_width / 2;
 	}
@@ -33,7 +33,7 @@ GamePhysics::Collision* GamePhysics::AABBColliderComponent::checkCollisionCircle
 	{
 		direction.y = m_height / 2;
 	}
-	if (direction.y < -m_height / 2)
+	else if (direction.y < -m_height / 2)
 	{
 		direction.y = -m_height / 2;
 	}
@@ -51,6 +51,8 @@ GamePhysics::Collision* GamePhysics::AABBColliderComponent::checkCollisionCircle
 
 	collisionData->collider = other;
 	collisionData->normal = direction.getNormalized();
+	collisionData->contactPoint = closestPoint;
+	collisionData->penetrationDistance = other->getRadius() - distance;
 
 	return collisionData;
 
@@ -70,6 +72,27 @@ GamePhysics::Collision* GamePhysics::AABBColliderComponent::checkCollisionAABB(A
 		return nullptr;
 	}
 
+	GameMath::Vector3 otherToAABB = other->getOwner()->getTransform()->getGlobalPosition() - getOwner()->getTransform()->getGlobalPosition();
+
+	if (otherToAABB.x > m_width / 2)
+	{
+		otherToAABB.x = m_width / 2;
+	}
+	else if (otherToAABB.x < -m_width / 2)
+	{
+		otherToAABB.x = -m_width / 2;
+	}
+	if (otherToAABB.y > m_height / 2)
+	{
+		otherToAABB.y = m_height / 2;
+	}
+	else if (otherToAABB.y < -m_height / 2)
+	{
+		otherToAABB.y = -m_height / 2;
+	}
+
+	GameMath::Vector3 closestPoint = getOwner()->getTransform()->getGlobalPosition() + otherToAABB;
+
 	GameMath::Vector3 position = getOwner()->getTransform()->getGlobalPosition();
 	GameMath::Vector3 otherPosition = other->getOwner()->getTransform()->getGlobalPosition();
 
@@ -77,7 +100,9 @@ GamePhysics::Collision* GamePhysics::AABBColliderComponent::checkCollisionAABB(A
 	float distance = direction.getMagnitude();
 
 	collisionData->collider = other;
-	collisionData->normal = direction.getNormalized();
+	collisionData->normal = getPenetrationVector(other).getNormalized();
+	collisionData->contactPoint = closestPoint;
+	collisionData->penetrationDistance = getPenetrationVector(other).getMagnitude();
 
 	return collisionData;
 	
@@ -111,4 +136,29 @@ float GamePhysics::AABBColliderComponent::getTop()
 float GamePhysics::AABBColliderComponent::getBottom()
 {
 	return getOwner()->getTransform()->getGlobalPosition().y - m_height / 2;
+}
+
+GameMath::Vector3 GamePhysics::AABBColliderComponent::getPenetrationVector(AABBColliderComponent* other)
+{
+	float smallestPenetration = abs(getRight() - other->getLeft());
+
+	GameMath::Vector3 normalFace = { 1, 0, 0 };
+
+	if (abs(getLeft() - getRight()) < smallestPenetration)
+	{
+		smallestPenetration = abs(getLeft() - other->getRight());
+		normalFace = { -1, 0, 0 };
+	}
+	if (abs(getTop() - other->getBottom()) < smallestPenetration)
+	{
+		smallestPenetration = abs(getTop() - other->getBottom());
+		normalFace = { 0, 1, 0 };
+	}
+	if (abs(getBottom() - other->getTop()) < smallestPenetration)
+	{
+		smallestPenetration = abs(getBottom() - other->getTop());
+		normalFace = { 0, -1, 0 };
+	}
+
+	return normalFace * smallestPenetration;
 }

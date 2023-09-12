@@ -22,6 +22,8 @@ void GameEngine::Engine::run()
 {
 	double lastTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()).count();
 	double deltaTime = 0;
+	double accumulatedTime = 0;
+	setTimeStep(0.01);
 
 	window = GameGraphics::Window(800, 800, "Test Application");
 	window.open();
@@ -59,6 +61,11 @@ void GameEngine::Engine::start()
 void GameEngine::Engine::update(double deltaTime)
 {
 	m_currentScene->update(deltaTime);
+}
+
+void GameEngine::Engine::fixedUpdate()
+{
+	m_currentScene->fixedUpdate();
 }
 
 void GameEngine::Engine::end()

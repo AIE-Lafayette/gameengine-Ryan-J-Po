@@ -63,8 +63,44 @@ void GamePhysics::RigidBodyComponent::applyForceToActor(RigidBodyComponent* othe
 	other->applyForce(force);
 }
 
+void GamePhysics::RigidBodyComponent::applyContactForce(GamePhysics::Collision* other)
+{
+	float mass = getMass();
+	float massOther = other->collider->getRigidBody()->getMass();
+
+	float displacement1 = 1;
+
+	float penetrationDistance = other->penetrationDistance;
+
+	if (massOther != INFINITY && !getIsKinematic())
+	{
+		displacement1 = massOther / (mass + massOther);
+	}
+
+	if (!getIsKinematic)
+	{
+		GameMath::Vector3 position = getOwner()->getTransform()->getGlobalPosition();
+		getOwner()->getTransform()->setLocalPosition(position - (displacement1 * other->normal * penetrationDistance));
+	}
+
+	float displacement2 = massOther;
+
+	if (mass != INFINITY)
+	{
+		displacement2 = -(mass / mass + massOther);
+	}
+
+	if (!other->collider->getRigidBody()->getIsKinematic())
+	{
+		GameMath::Vector3 position = other->collider->getOwner()->getTransform()->getGlobalPosition();
+
+		other->collider->getOwner()->getTransform()->setLocalPosition(position + (displacement2 * other->normal * penetrationDistance));
+	}
+}
+
 void GamePhysics::RigidBodyComponent::resolveCollision(GamePhysics::Collision* collisionData)
 {
+	applyContactForce(collisionData);
 	//Calculate average elasticity
 	//average = the sum of e1 and e2 / 2       e= elasticity     j = force magnitude    vA = velocity of obj1    vB = velocity of obj2  n = normal mA = mass of obj1  mB = mass of obj2
 	float averageElasticity = (m_elasticity + collisionData->collider->getRigidBody()->m_elasticity) / 2;
