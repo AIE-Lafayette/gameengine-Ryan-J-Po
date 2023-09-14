@@ -139,12 +139,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AABBColliderComponent.h" />
+    <ClInclude Include="CContainerColliderComponent.h" />
     <ClInclude Include="CircleColliderComponent.h" />
     <ClInclude Include="ColliderComponent.h" />
     <ClInclude Include="RigidBodyComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AABBColliderComponent.cpp" />
+    <ClCompile Include="CContainerColliderComponent.cpp" />
     <ClCompile Include="CircleColliderComponent.cpp" />
     <ClCompile Include="ColliderComponent.cpp" />
     <ClCompile Include="RigidBodyComponent.cpp" />

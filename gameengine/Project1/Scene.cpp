@@ -38,6 +38,23 @@ void GameEngine::Scene::update(double deltaTime)
 
 void GameEngine::Scene::fixedUpdate()
 {
+	for (Entity* entity : m_entities)
+	{
+		if (!entity->getEnabled())
+		{
+			continue;
+		}
+
+		if (!entity->getStarted())
+		{
+			entity->start();
+		}
+
+		entity->fixedUpdate();
+	}
+
+	onFixedUpdate();
+
 	for (auto iterator1 = m_activeColliders.begin(); iterator1 != m_activeColliders.end(); iterator1++)
 	{
 		for (auto iterator2 = iterator1; iterator2 != m_activeColliders.end(); iterator2++)
@@ -68,7 +85,7 @@ void GameEngine::Scene::fixedUpdate()
 		}
 	}
 
-	onFixedUpdate();
+	//onFixedUpdate();
 }
 
 void GameEngine::Scene::end()

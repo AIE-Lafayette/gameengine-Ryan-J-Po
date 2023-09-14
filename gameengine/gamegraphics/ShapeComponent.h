@@ -6,7 +6,8 @@ namespace GameGraphics
     enum ShapeType
     {
         CIRCLE,
-        BOX
+        BOX,
+        CIRCLE_CONTAINER
     };
     class ShapeComponent : public GameEngine::Component
     {

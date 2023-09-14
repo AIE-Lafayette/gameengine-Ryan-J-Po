@@ -25,7 +25,7 @@ namespace GamePhysics
 		void setIsKinematic(bool value) { m_isKinematic = value; }
 
 		float getElasticity() { return m_elasticity; }
-		void setElasticity(bool value) { m_elasticity = value; }
+		void setElasticity(float value) { m_elasticity = value; }
 
 		void applyForce(GameMath::Vector3 force);
 		void applyForce(GameMath::Vector2 force);

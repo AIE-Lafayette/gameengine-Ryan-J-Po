@@ -13,6 +13,10 @@ void GameGraphics::ShapeComponent::draw()
 	{
 		RAYLIB_H::DrawEllipse(position.x, position.y, scale.x, scale.y, color);
 	}
+	else if (m_shapeType == CIRCLE_CONTAINER)
+	{
+		RAYLIB_H::DrawEllipse(position.x, position.y, scale.x, scale.y, color);
+	}
 	else if (m_shapeType == BOX)
 	{
 		RAYLIB_H::DrawRectangle(position.x - scale.x / 2, position.y - scale.y / 2, scale.x, scale.y, color);

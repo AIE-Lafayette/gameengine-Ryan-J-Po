@@ -38,6 +38,8 @@ void GameEngine::Entity::fixedUpdate()
 		if (component->getEnabled())
 			component->fixedUpdate();
 	}
+
+	onFixedUpdate();
 }
 
 void GameEngine::Entity::end()
