@@ -1,5 +1,6 @@
 #include "AABBColliderComponent.h"
 #include "CircleColliderComponent.h"
+#include "CContainerColliderComponent.h"
 #include <GameMath/Vector3.h>
 #include <Raylib/raylib.h>
 #include "Project1/TransformComponent.h"
@@ -106,6 +107,23 @@ GamePhysics::Collision* GamePhysics::AABBColliderComponent::checkCollisionAABB(A
 
 	return collisionData;
 	
+}
+
+GamePhysics::Collision* GamePhysics::AABBColliderComponent::checkCollisionContainer(CContainerColliderComponent* other)
+{
+	GamePhysics::Collision* collisionData = other->checkCollisionAABB(this);
+
+	GameMath::Vector3 position = getOwner()->getTransform()->getGlobalPosition();
+	GameMath::Vector3 otherPosition = other->getOwner()->getTransform()->getGlobalPosition();
+
+	GameMath::Vector3 direction = otherPosition - position;
+	float distance = direction.getMagnitude();
+
+	collisionData->collider = other;
+	collisionData->normal = direction.getNormalized();
+
+
+	return collisionData;
 }
 
 void GamePhysics::AABBColliderComponent::draw()

@@ -9,6 +9,7 @@ namespace GamePhysics
 
         GamePhysics::Collision* checkCollisionCircle(CircleColliderComponent* other) override;
         GamePhysics::Collision* checkCollisionAABB(AABBColliderComponent* other) override;
+        GamePhysics::Collision* checkCollisionContainer(CContainerColliderComponent* other) override;
 
         void draw() override;
 
@@ -31,6 +32,12 @@ namespace GamePhysics
         /// Gets the y value that represents how far the box extends to its bottom.
         /// </summary>
         float getBottom();
+
+        float getWidth() { return m_width; }
+        void setWidth(float width) { m_width = width; }
+
+        float getHeight() { return m_height; }
+        void setHeight(float height) { m_height = height; }
 
         GameMath::Vector3 getPenetrationVector(AABBColliderComponent* other);
 

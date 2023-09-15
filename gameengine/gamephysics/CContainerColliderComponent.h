@@ -9,6 +9,7 @@ namespace GamePhysics
 
 		GamePhysics::Collision* checkCollisionCircle(CircleColliderComponent* other) override;
 		GamePhysics::Collision* checkCollisionAABB(AABBColliderComponent* other) override;
+		GamePhysics::Collision* checkCollisionContainer(CContainerColliderComponent* other) override { return nullptr; }
 
 		void draw() override;
 

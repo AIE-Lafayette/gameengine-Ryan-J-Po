@@ -6,6 +6,7 @@ namespace GamePhysics
 {
 	class CircleColliderComponent;
 	class AABBColliderComponent;
+	class CContainerColliderComponent;
 	class RigidBodyComponent;
 
 	class ColliderComponent : public GameEngine::Component
@@ -23,6 +24,7 @@ namespace GamePhysics
 
 		virtual Collision* checkCollisionCircle(CircleColliderComponent* other) = 0;
 		virtual Collision* checkCollisionAABB(AABBColliderComponent* other) = 0;
+		virtual Collision* checkCollisionContainer(CContainerColliderComponent* other) = 0;
 
 		void onCollision(GamePhysics::Collision* other) override;
 
