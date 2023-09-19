@@ -11,6 +11,7 @@ GamePhysics::AABBColliderComponent::AABBColliderComponent(float width, float hei
 {
 	m_width = width;
 	m_height = height;
+	setColliderType(AABB);
 }
 
 GamePhysics::Collision* GamePhysics::AABBColliderComponent::checkCollisionCircle(CircleColliderComponent* other)
@@ -113,14 +114,25 @@ GamePhysics::Collision* GamePhysics::AABBColliderComponent::checkCollisionContai
 {
 	GamePhysics::Collision* collisionData = other->checkCollisionAABB(this);
 
-	GameMath::Vector3 position = getOwner()->getTransform()->getGlobalPosition();
+	if (!collisionData)
+	{
+		return nullptr;
+	}
+
+	/*GameMath::Vector3 position = getOwner()->getTransform()->getGlobalPosition();
 	GameMath::Vector3 otherPosition = other->getOwner()->getTransform()->getGlobalPosition();
 
 	GameMath::Vector3 direction = otherPosition - position;
-	float distance = direction.getMagnitude();
+	direction * -1;*/
+
+	/*GameMath::Vector3 closestPoint = otherPosition + direction;
+
+	GameMath::Vector3 circleToPoint = closestPoint - otherPosition;
+
+	float distance = circleToPoint.getMagnitude();*/
 
 	collisionData->collider = other;
-	collisionData->normal = direction.getNormalized();
+	collisionData->normal = collisionData->normal * -1;
 
 
 	return collisionData;

@@ -5,7 +5,7 @@ namespace GamePhysics
 	class CContainerColliderComponent : public ColliderComponent
 	{
 	public:
-		CContainerColliderComponent(float radius) : ColliderComponent() { m_radius = radius; }
+		CContainerColliderComponent(float radius) : ColliderComponent() { m_radius = radius; setColliderType(CONTAINER); }
 
 		GamePhysics::Collision* checkCollisionCircle(CircleColliderComponent* other) override;
 		GamePhysics::Collision* checkCollisionAABB(AABBColliderComponent* other) override;

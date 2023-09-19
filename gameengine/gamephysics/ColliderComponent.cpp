@@ -18,6 +18,8 @@ GamePhysics::Collision* GamePhysics::ColliderComponent::checkCollision(ColliderC
 
 	case AABB:
 		return checkCollisionAABB((AABBColliderComponent*)other);
+	case CONTAINER:
+		return checkCollisionContainer((CContainerColliderComponent*)other);
 	}
 
 	return nullptr;

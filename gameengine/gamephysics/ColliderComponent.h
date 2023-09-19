@@ -15,7 +15,8 @@ namespace GamePhysics
 		enum ColliderType
 		{
 			CIRCLE,
-			AABB
+			AABB,
+			CONTAINER
 		};
 
 	public:

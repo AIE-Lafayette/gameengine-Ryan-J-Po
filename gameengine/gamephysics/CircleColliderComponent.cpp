@@ -32,6 +32,11 @@ GamePhysics::Collision* GamePhysics::CircleColliderComponent::checkCollisionAABB
 {
     GamePhysics::Collision* collisionData = other->checkCollisionCircle(this);
 
+    if (!collisionData)
+    {
+        return nullptr;
+    }
+
     GameMath::Vector3 position = getOwner()->getTransform()->getGlobalPosition();
     GameMath::Vector3 otherPosition = other->getOwner()->getTransform()->getGlobalPosition();
 
@@ -47,23 +52,16 @@ GamePhysics::Collision* GamePhysics::CircleColliderComponent::checkCollisionAABB
 
 GamePhysics::Collision* GamePhysics::CircleColliderComponent::checkCollisionContainer(CContainerColliderComponent* other)
 {
-    GameMath::Vector3 position = getOwner()->getTransform()->getGlobalPosition();
-    GameMath::Vector3 otherPosition = other->getOwner()->getTransform()->getGlobalPosition();
+    GamePhysics::Collision* collisionData = other->checkCollisionCircle(this);
 
-    GameMath::Vector3 direction = otherPosition - position;
-    float distance = direction.getMagnitude();
-
-    if (distance <= other->getRadius() - getRadius())
+    if (!collisionData)
     {
         return nullptr;
     }
 
-    GamePhysics::Collision* collisionData = new GamePhysics::Collision();
-
     collisionData->collider = other;
-    collisionData->normal = direction.getNormalized();
-    collisionData->contactPoint = getOwner()->getTransform()->getGlobalPosition() + direction.getNormalized() * getRadius();
-    //collisionData->penetrationDistance = other->getRadius() + getRadius() - distance;
+    collisionData->normal = collisionData->normal * -1;
+
 
     return collisionData;
 }

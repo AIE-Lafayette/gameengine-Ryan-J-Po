@@ -6,6 +6,7 @@
 #include "gamephysics/AABBColliderComponent.h"
 #include "gamephysics/CContainerColliderComponent.h"
 #include "Raylib/raylib.h"
+#include <cstdlib>
 
 void TestScene::onStart()
 {
@@ -24,44 +25,26 @@ void TestScene::onStart()
 	circle->addComponent(new GameGraphics::ShapeComponent(GameGraphics::CIRCLE));
 
 	GamePhysics::RigidBodyComponent* rigidBodyCircle = circle->addComponent <GamePhysics::RigidBodyComponent>();
-	circle->addComponent(new GamePhysics::CircleColliderComponent(31));
-
-	//rigidBodyCircle->applyForce({ 100, -100 });
+	circle->addComponent(new GamePhysics::CircleColliderComponent(30));
 
 	circle->getTransform()->setLocalPosition( 410, 410 );
 	circle->getTransform()->setLocalScale(30, 30);
 
-	//rigidBodyCircle->setGravity(0);
-	rigidBodyCircle->setElasticity(2);
-
-	//New entity - circle2 -------------------------------------------------------------------------------------------------------
-	GameEngine::Entity* circle2 = new GameEngine::Entity();
-	circle2->addComponent(new GameGraphics::ShapeComponent(GameGraphics::CIRCLE));
-
-	GamePhysics::RigidBodyComponent* rigidBodyCircle2 = circle2->addComponent <GamePhysics::RigidBodyComponent>();
-	circle2->addComponent(new GamePhysics::CircleColliderComponent(60));
-
-	//rigidBody->applyForce({ 100, -100 });
-
-	circle2->getTransform()->setLocalPosition(400, 400);
-	circle2->getTransform()->setLocalScale(50, 50);
-
-	//rigidBodyCircle2->setGravity(0);
-	rigidBodyCircle2->setElasticity(1);
+	rigidBodyCircle->setElasticity(1.3);
 
 	//New entity - box -----------------------------------------------------------------------------------------------------------
 	GameEngine::Entity* box = new GameEngine::Entity();
 	box->addComponent(new GameGraphics::ShapeComponent(GameGraphics::BOX));
 
 	GamePhysics::RigidBodyComponent* rigidBodyBox = box->addComponent <GamePhysics::RigidBodyComponent>();
-	box->addComponent(new GamePhysics::AABBColliderComponent(31, 31));
+	box->addComponent(new GamePhysics::AABBColliderComponent(30, 30));
 
-	box->getTransform()->setLocalPosition(500, 430);
+	box->getTransform()->setLocalPosition(410, 390);
 	box->getTransform()->setLocalScale(30, 30);
 
 	//rigidBodyBox->setGravity(0);
 	//rigidBodyBox->setIsKinematic(true);
-	rigidBodyBox->setElasticity(1.8);
+	rigidBodyBox->setElasticity(1.3);
 
 	addEntity(container);
 	addEntity(circle);
@@ -76,20 +59,34 @@ void TestScene::onUpdate(double deltaTime)
 		GameEngine::Entity* obj = new GameEngine::Entity();
 		obj->getTransform()->setLocalPosition({ (float)GetMouseX(), (float)GetMouseY(), 0 });
 		obj->getTransform()->setLocalScale({ 20, 20, 0 });
-		obj->addComponent(new GameGraphics::ShapeComponent(GameGraphics::CIRCLE));
+
+		GameGraphics::ShapeComponent* shapeComponent = new GameGraphics::ShapeComponent(GameGraphics::CIRCLE);
+
+		obj->addComponent(shapeComponent);
 		obj->addComponent(new GamePhysics::CircleColliderComponent(20));
+
 		GamePhysics::RigidBodyComponent* rigidBodyObj = obj->addComponent <GamePhysics::RigidBodyComponent>();
+		rigidBodyObj->setElasticity(1.3);
+
+		shapeComponent->setColor((unsigned int)obj);
 		addEntity(obj);
 
 	}
 	if (IsMouseButtonPressed(1))
 	{
 		GameEngine::Entity* obj = new GameEngine::Entity();
-		obj->getTransform()->setLocalPosition(200,200);
+		obj->getTransform()->setLocalPosition({ (float)GetMouseX(), (float)GetMouseY(), 0 });
 		obj->getTransform()->setLocalScale({ 20, 20, 0 });
-		obj->addComponent(new GameGraphics::ShapeComponent(GameGraphics::CIRCLE));
-		obj->addComponent(new GamePhysics::CircleColliderComponent(20));
+
+		GameGraphics::ShapeComponent* shapeComponent = new GameGraphics::ShapeComponent(GameGraphics::BOX);
+
+		obj->addComponent(shapeComponent);
+		obj->addComponent(new GamePhysics::AABBColliderComponent(20,20));
+
 		GamePhysics::RigidBodyComponent* rigidBodyObj = obj->addComponent <GamePhysics::RigidBodyComponent>();
+		rigidBodyObj->setElasticity(1.3);
+
+		shapeComponent->setColor((unsigned int)obj);
 		addEntity(obj);
 
 	}

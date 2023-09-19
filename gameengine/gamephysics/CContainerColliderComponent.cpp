@@ -23,7 +23,7 @@ GamePhysics::Collision* GamePhysics::CContainerColliderComponent::checkCollision
     collisionData->collider = other;
     collisionData->normal = direction.getNormalized();
     collisionData->contactPoint = getOwner()->getTransform()->getGlobalPosition() + direction.getNormalized() * getRadius();
-    //collisionData->penetrationDistance = other->getRadius() + getRadius() - distance;
+    collisionData->penetrationDistance = getRadius() - other->getRadius() - distance;
 
     return collisionData;
 }
@@ -32,10 +32,17 @@ GamePhysics::Collision* GamePhysics::CContainerColliderComponent::checkCollision
 {
 	GamePhysics::Collision* collisionData = new GamePhysics::Collision();
 
+	if (!collisionData)
+	{
+		return nullptr;
+	}
+
 	GameMath::Vector3 position = other->getOwner()->getTransform()->getGlobalPosition();
 	GameMath::Vector3 circlePosition = getOwner()->getTransform()->getGlobalPosition();
 
-	GameMath::Vector3 direction = circlePosition - position;
+	GameMath::Vector3 direction = position - circlePosition;
+
+	//direction * -1;
 
 	if (direction.x > other->getWidth())
 	{
@@ -56,11 +63,11 @@ GamePhysics::Collision* GamePhysics::CContainerColliderComponent::checkCollision
 
 	GameMath::Vector3 closestPoint = position + direction;
 
-	GameMath::Vector3 circleToPoint = closestPoint - other->getOwner()->getTransform()->getGlobalPosition();
+	GameMath::Vector3 circleToPoint = closestPoint - circlePosition;
 
 	float distance = circleToPoint.getMagnitude();
 
-	if (distance < getRadius())
+	if (distance <= getRadius())
 	{
 		return nullptr;
 	}
