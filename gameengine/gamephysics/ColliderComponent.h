@@ -16,6 +16,7 @@ namespace GamePhysics
 		{
 			CIRCLE,
 			AABB,
+			//New collider type made specifically for entities given a ContainerColliderComponent.
 			CONTAINER
 		};
 

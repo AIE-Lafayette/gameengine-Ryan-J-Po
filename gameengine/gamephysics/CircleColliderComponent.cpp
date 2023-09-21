@@ -50,6 +50,12 @@ GamePhysics::Collision* GamePhysics::CircleColliderComponent::checkCollisionAABB
     return collisionData;
 }
 
+/// <summary>
+/// Checks to see if a collision has occured with a container. If a collision with a container has occured, it uses the container's 'checkCollisionCircle' function and data in order
+/// to give accurate collision detection and resolution. 
+/// </summary>
+/// <param name="other"></param>
+/// <returns> The collisionData received from the Container this entity has collided with.</returns>
 GamePhysics::Collision* GamePhysics::CircleColliderComponent::checkCollisionContainer(CContainerColliderComponent* other)
 {
     GamePhysics::Collision* collisionData = other->checkCollisionCircle(this);

@@ -18,6 +18,7 @@ GamePhysics::Collision* GamePhysics::ColliderComponent::checkCollision(ColliderC
 
 	case AABB:
 		return checkCollisionAABB((AABBColliderComponent*)other);
+	//New switch statement for when collision detection with a container occurs. Calls the checkCollisionContainer function of the objects detecting the collision.
 	case CONTAINER:
 		return checkCollisionContainer((CContainerColliderComponent*)other);
 	}

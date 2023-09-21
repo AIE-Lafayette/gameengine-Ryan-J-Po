@@ -7,6 +7,7 @@ namespace GameGraphics
     {
         CIRCLE,
         BOX,
+        //New shape type made specifically for containers. Makes the same function calls as a CIRCLE ShapeType.
         CIRCLE_CONTAINER
     };
     class ShapeComponent : public GameEngine::Component

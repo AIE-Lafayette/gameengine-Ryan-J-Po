@@ -110,6 +110,12 @@ GamePhysics::Collision* GamePhysics::AABBColliderComponent::checkCollisionAABB(A
 	
 }
 
+/// <summary>
+/// Checks to see if a collision has occured with a container. If a collision with a container has occured, it uses the container's 'checkCollisionAABB' function and data in order
+/// to give accurate collision detection and resolution. 
+/// </summary>
+/// <param name="other"></param>
+/// <returns> The collisionData received from the Container this entity has collided with.</returns>
 GamePhysics::Collision* GamePhysics::AABBColliderComponent::checkCollisionContainer(CContainerColliderComponent* other)
 {
 	GamePhysics::Collision* collisionData = other->checkCollisionAABB(this);
@@ -118,18 +124,6 @@ GamePhysics::Collision* GamePhysics::AABBColliderComponent::checkCollisionContai
 	{
 		return nullptr;
 	}
-
-	/*GameMath::Vector3 position = getOwner()->getTransform()->getGlobalPosition();
-	GameMath::Vector3 otherPosition = other->getOwner()->getTransform()->getGlobalPosition();
-
-	GameMath::Vector3 direction = otherPosition - position;
-	direction * -1;*/
-
-	/*GameMath::Vector3 closestPoint = otherPosition + direction;
-
-	GameMath::Vector3 circleToPoint = closestPoint - otherPosition;
-
-	float distance = circleToPoint.getMagnitude();*/
 
 	collisionData->collider = other;
 	collisionData->normal = collisionData->normal * -1;
