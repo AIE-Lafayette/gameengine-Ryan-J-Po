@@ -1,5 +1,10 @@
 #pragma once
 
+namespace GameGraphics
+{
+	class Window;
+}
+
 namespace GameEngine
 {
 	class Scene;
@@ -20,6 +25,8 @@ namespace GameEngine
 		static bool getApplicationShouldClose();
 		static void closeApplication();
 
+		static GameGraphics::Window* getWindow() { return m_window; }
+
 		void run();
 	private:
 		void start();
@@ -32,6 +39,7 @@ namespace GameEngine
 		static double m_deltaTime;
 		static double m_fixedTimeStep;
 		static Scene* m_currentScene;
+		static GameGraphics::Window* m_window;
 	};
 
 }

@@ -3,7 +3,6 @@
 #include "CContainerColliderComponent.h"
 #include <GameMath/Vector3.h>
 #include "Project1/TransformComponent.h"
-#include <Raylib/raylib.h>
 
 GamePhysics::Collision* GamePhysics::CircleColliderComponent::checkCollisionCircle(CircleColliderComponent* other)
 {
@@ -78,5 +77,5 @@ void GamePhysics::CircleColliderComponent::draw()
 
     unsigned int colorCode = getColor();
 
-    RAYLIB_H::DrawCircleLines(position.x, position.y, getRadius(), GetColor(colorCode));
+    //RAYLIB_H::DrawCircleLines(position.x, position.y, getRadius(), GetColor(colorCode));
 }

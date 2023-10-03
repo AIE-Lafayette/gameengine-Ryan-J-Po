@@ -5,11 +5,11 @@
 #include "gamephysics/CircleColliderComponent.h"
 #include "gamephysics/AABBColliderComponent.h"
 #include "gamephysics/CContainerColliderComponent.h"
-#include "Raylib/raylib.h"
 #include <cstdlib>
 
 void TestScene::onStart()
 {
+	return;
 	GameEngine::Entity* container = new GameEngine::Entity();
 	//container->addComponent(new GameGraphics::ShapeComponent(GameGraphics::CIRCLE_CONTAINER));
 	GamePhysics::RigidBodyComponent* rigidBodyContainter = container->addComponent<GamePhysics::RigidBodyComponent>();
@@ -54,7 +54,7 @@ void TestScene::onStart()
 
 void TestScene::onUpdate(double deltaTime)
 {
-	if (IsMouseButtonPressed(0))
+	/*if (IsMouseButtonPressed(0))
 	{
 		GameEngine::Entity* obj = new GameEngine::Entity();
 		obj->getTransform()->setLocalPosition({ (float)GetMouseX(), (float)GetMouseY(), 0 });
@@ -89,5 +89,5 @@ void TestScene::onUpdate(double deltaTime)
 		shapeComponent->setColor((unsigned int)obj);
 		addEntity(obj);
 
-	}
+	}*/
 }

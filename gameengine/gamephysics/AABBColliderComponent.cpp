@@ -2,7 +2,6 @@
 #include "CircleColliderComponent.h"
 #include "CContainerColliderComponent.h"
 #include <GameMath/Vector3.h>
-#include <Raylib/raylib.h>
 #include "Project1/TransformComponent.h"
 #include "Project1/Engine.h"
 #include "Project1/Scene.h"
@@ -138,7 +137,7 @@ void GamePhysics::AABBColliderComponent::draw()
 
 	unsigned int colorCode = getColor();
 
-	RAYLIB_H::DrawRectangleLines(getLeft(), getBottom(), m_width, m_height, GetColor(colorCode));
+	//RAYLIB_H::DrawRectangleLines(getLeft(), getBottom(), m_width, m_height, GetColor(colorCode));
 }
 
 float GamePhysics::AABBColliderComponent::getLeft()
