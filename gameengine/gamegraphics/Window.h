@@ -1,4 +1,5 @@
 #pragma once
+#include <GameMath/Vector2.h>
 
 class GLFWwindow;
 
@@ -22,6 +23,8 @@ namespace GameGraphics
 		void beginDrawing();
 		void endDrawing();
 		void close();
+
+		static GameMath::Vector2 convertToScreenPosition(GameMath::Vector2 position);
 
 	private:
 		int m_width;
