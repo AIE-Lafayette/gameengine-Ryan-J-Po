@@ -1,6 +1,7 @@
 #pragma once
 #include "Project1/Component.h"
 #include <GameMath\Vector3.h>
+#include <GameMath/Vector4.h>
 
 namespace GamePhysics
 {
@@ -38,14 +39,15 @@ namespace GamePhysics
 		bool getIsTrigger() { return m_isTrigger; }
 		void setIsTrigger(bool value) { m_isTrigger = value; }
 
-		unsigned int getColor() { return m_color; }
+		GameMath::Vector4 getColor() { return m_color; }
+		void setColor(GameMath::Vector4 color) { m_color = color; }
 
 		RigidBodyComponent* getRigidBody() { return m_rigidBody; }
 
 	private:
 		bool m_isTrigger;
 		ColliderType m_colliderType;
-		unsigned int m_color = 0X00FF00FF;
+		GameMath::Vector4 m_color = {1, 1, 1, 1};
 		RigidBodyComponent* m_rigidBody;
 	};
 

@@ -5,6 +5,7 @@
 #include "Project1/TransformComponent.h"
 #include "Project1/Engine.h"
 #include "Project1/Scene.h"
+#include "gamegraphics/Gizmos.h"
 
 GamePhysics::AABBColliderComponent::AABBColliderComponent(float width, float height)
 {
@@ -135,9 +136,7 @@ void GamePhysics::AABBColliderComponent::draw()
 {
 	GameMath::Vector3 position = getOwner()->getTransform()->getGlobalPosition();
 
-	unsigned int colorCode = getColor();
-
-	//RAYLIB_H::DrawRectangleLines(getLeft(), getBottom(), m_width, m_height, GetColor(colorCode));
+	GameGraphics::Gizmos::drawBoxLines({ m_width, m_height }, {position.x, position.y}, getColor());
 }
 
 float GamePhysics::AABBColliderComponent::getLeft()
