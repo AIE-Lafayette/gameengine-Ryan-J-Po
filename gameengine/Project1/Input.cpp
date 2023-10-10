@@ -20,5 +20,11 @@ bool Input::getRightMouseButton()
 
 GameMath::Vector2 Input::getMousePos()
 {
-	glfwGetCursorPos(GameEngine::Engine::getWindow()->getWindowContext(), double &xpos, double &ypos);
+	double xPos;
+	double yPos;
+
+	glfwGetCursorPos(GameEngine::Engine::getWindow()->getWindowContext(), &xPos, &yPos);
+	GameMath::Vector2 position = { (float)xPos, (float)yPos };
+
+	return position;
 }

@@ -58,7 +58,7 @@ void TestScene::onUpdate(double deltaTime)
 	if (Input::getLeftMouseButton())
 	{
 		GameEngine::Entity* obj = new GameEngine::Entity();
-		obj->getTransform()->setLocalPosition({ glfwGe, (float)GetMouseY(), 0 });
+		obj->getTransform()->setLocalPosition(Input::getMousePos().x, Input::getMousePos().y);
 		obj->getTransform()->setLocalScale({ 20, 20, 0 });
 
 		GameGraphics::ShapeComponent* shapeComponent = new GameGraphics::ShapeComponent(GameGraphics::CIRCLE);
@@ -69,14 +69,14 @@ void TestScene::onUpdate(double deltaTime)
 		GamePhysics::RigidBodyComponent* rigidBodyObj = obj->addComponent <GamePhysics::RigidBodyComponent>();
 		rigidBodyObj->setElasticity(1.3);
 
-		shapeComponent->setColor((unsigned int)obj);
+		//shapeComponent->setColor((unsigned int)obj);
 		addEntity(obj);
 
 	}
 	if (Input::getRightMouseButton())
 	{
 		GameEngine::Entity* obj = new GameEngine::Entity();
-		obj->getTransform()->setLocalPosition({ (float)GetMouseX(), (float)GetMouseY(), 0 });
+		obj->getTransform()->setLocalPosition(Input::getMousePos().x, Input::getMousePos().y);
 		obj->getTransform()->setLocalScale({ 20, 20, 0 });
 
 		GameGraphics::ShapeComponent* shapeComponent = new GameGraphics::ShapeComponent(GameGraphics::BOX);
@@ -87,7 +87,7 @@ void TestScene::onUpdate(double deltaTime)
 		GamePhysics::RigidBodyComponent* rigidBodyObj = obj->addComponent <GamePhysics::RigidBodyComponent>();
 		rigidBodyObj->setElasticity(1.3);
 
-		shapeComponent->setColor((unsigned int)obj);
+		//shapeComponent->setColor((unsigned int)obj);
 		addEntity(obj);
 
 	}
