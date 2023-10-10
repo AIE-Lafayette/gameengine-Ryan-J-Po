@@ -19,6 +19,8 @@ namespace GameGraphics
 		int getFrameRate();
 		void setTargetFrameRate(int fps);
 
+		GLFWwindow* getWindowContext() { return m_window; }
+
 		void open();
 		void beginDrawing();
 		void endDrawing();

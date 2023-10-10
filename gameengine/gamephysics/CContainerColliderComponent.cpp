@@ -106,5 +106,5 @@ void GamePhysics::CContainerColliderComponent::draw()
 
     GameMath::Vector4 color = getColor();
 
-	GameGraphics::Gizmos::drawCircle({ position.x, position.y }, scale.x, 50, color);
+	GameGraphics::Gizmos::drawCircleLines({ position.x, position.y }, getRadius(), 50, color);
 }

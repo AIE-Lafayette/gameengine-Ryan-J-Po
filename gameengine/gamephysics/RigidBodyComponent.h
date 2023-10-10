@@ -42,7 +42,7 @@ namespace GamePhysics
 
 	private:
 		float m_mass = 1;
-		float m_gravity = 9.81f;
+		float m_gravity = -9.81f;
 		float m_elasticity = 0;
 
 		bool m_isKinematic;

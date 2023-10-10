@@ -1,7 +1,7 @@
 #pragma once
 #include "Project1/Component.h"
 #include <GameMath\Vector3.h>
-#include <GameMath/Vector4.h>
+#include <GameMath\Vector4.h>
 
 namespace GamePhysics
 {

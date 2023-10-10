@@ -83,8 +83,8 @@ void GameGraphics::Window::beginDrawing()
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	//GameGraphics::Gizmos::drawTriangle({-50,0}, {50, 0}, {0, 50}, {0.1f, 0, 0.4f, 1});
-	GameGraphics::Gizmos::drawBox({ 300,300 }, {0,0}, {1, 1, 1, 1});
-	GameGraphics::Gizmos::drawBoxLines({ 350,350 }, { 0,0 }, { 1, 1, 1, 1 });
+	//GameGraphics::Gizmos::drawBox({ 300,300 }, {0,0}, {1, 1, 1, 1});
+	//GameGraphics::Gizmos::drawBoxLines({ 350,350 }, { 0,0 }, { 1, 1, 1, 1 });
 }
 
 void GameGraphics::Window::endDrawing()

@@ -5,16 +5,17 @@
 #include "gamephysics/CircleColliderComponent.h"
 #include "gamephysics/AABBColliderComponent.h"
 #include "gamephysics/CContainerColliderComponent.h"
+#include "Project1/Input.h"
 #include <cstdlib>
 
 void TestScene::onStart()
 {
-	return;
+	//return;
 	GameEngine::Entity* container = new GameEngine::Entity();
 	//container->addComponent(new GameGraphics::ShapeComponent(GameGraphics::CIRCLE_CONTAINER));
 	GamePhysics::RigidBodyComponent* rigidBodyContainter = container->addComponent<GamePhysics::RigidBodyComponent>();
 	container->addComponent(new GamePhysics::CContainerColliderComponent(400));
-	container->getTransform()->setLocalPosition(400, 400);
+	container->getTransform()->setLocalPosition(0, 0);
 	container->getTransform()->setLocalScale(400, 400);
 
 	rigidBodyContainter->setIsKinematic(true);
@@ -54,10 +55,10 @@ void TestScene::onStart()
 
 void TestScene::onUpdate(double deltaTime)
 {
-	/*if (IsMouseButtonPressed(0))
+	if (Input::getLeftMouseButton())
 	{
 		GameEngine::Entity* obj = new GameEngine::Entity();
-		obj->getTransform()->setLocalPosition({ (float)GetMouseX(), (float)GetMouseY(), 0 });
+		obj->getTransform()->setLocalPosition({ glfwGe, (float)GetMouseY(), 0 });
 		obj->getTransform()->setLocalScale({ 20, 20, 0 });
 
 		GameGraphics::ShapeComponent* shapeComponent = new GameGraphics::ShapeComponent(GameGraphics::CIRCLE);
@@ -72,7 +73,7 @@ void TestScene::onUpdate(double deltaTime)
 		addEntity(obj);
 
 	}
-	if (IsMouseButtonPressed(1))
+	if (Input::getRightMouseButton())
 	{
 		GameEngine::Entity* obj = new GameEngine::Entity();
 		obj->getTransform()->setLocalPosition({ (float)GetMouseX(), (float)GetMouseY(), 0 });
@@ -89,5 +90,5 @@ void TestScene::onUpdate(double deltaTime)
 		shapeComponent->setColor((unsigned int)obj);
 		addEntity(obj);
 
-	}*/
+	}
 }

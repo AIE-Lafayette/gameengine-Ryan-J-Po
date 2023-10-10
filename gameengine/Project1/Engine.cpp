@@ -7,16 +7,16 @@ GameEngine::Scene* GameEngine::Engine::m_currentScene = nullptr;
 double GameEngine::Engine::m_deltaTime = 0;
 double GameEngine::Engine::m_fixedTimeStep = 0.01;
 
-GameGraphics::Window* GameEngine::Engine::m_window = nullptr;
+GameGraphics::Window* GameEngine::Engine::m_windowWrapper = nullptr;
 
 bool GameEngine::Engine::getApplicationShouldClose()
 {
-	return m_window->getShouldClose();
+	return m_windowWrapper->getShouldClose();
 }
 
 void GameEngine::Engine::closeApplication()
 {
-	m_window->close();
+	m_windowWrapper->close();
 }
 
 void GameEngine::Engine::run()
@@ -26,8 +26,8 @@ void GameEngine::Engine::run()
 	double accumulatedTime = 0;
 	
 
-	m_window = new GameGraphics::Window(800, 800, "Test Application");
-	m_window->open();
+	m_windowWrapper = new GameGraphics::Window(800, 800, "Test Application");
+	m_windowWrapper->open();
 
 	start();
 
@@ -52,15 +52,15 @@ void GameEngine::Engine::run()
 			accumulatedTime -= fixedTimeStep;
 		}
 
-		m_window->beginDrawing();
+		m_windowWrapper->beginDrawing();
 		draw();
-		m_window->endDrawing();
+		m_windowWrapper->endDrawing();
 
 	}
 
 	end();
 
-	m_window->close();
+	m_windowWrapper->close();
 }
 
 void GameEngine::Engine::start()
