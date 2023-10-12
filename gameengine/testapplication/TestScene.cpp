@@ -6,51 +6,61 @@
 #include "gamephysics/AABBColliderComponent.h"
 #include "gamephysics/CContainerColliderComponent.h"
 #include "Project1/Input.h"
+#include "gamegraphics/SpriteComponent.h"
+#include "RotationComponent.h"
 #include <cstdlib>
 
 void TestScene::onStart()
 {
-	//return;
-	GameEngine::Entity* container = new GameEngine::Entity();
-	//container->addComponent(new GameGraphics::ShapeComponent(GameGraphics::CIRCLE_CONTAINER));
-	GamePhysics::RigidBodyComponent* rigidBodyContainter = container->addComponent<GamePhysics::RigidBodyComponent>();
-	container->addComponent(new GamePhysics::CContainerColliderComponent(400));
-	container->getTransform()->setLocalPosition(0, 0);
-	container->getTransform()->setLocalScale(400, 400);
+	
+	//GameEngine::Entity* container = new GameEngine::Entity();
+	////container->addComponent(new GameGraphics::ShapeComponent(GameGraphics::CIRCLE_CONTAINER));
+	//GamePhysics::RigidBodyComponent* rigidBodyContainter = container->addComponent<GamePhysics::RigidBodyComponent>();
+	//container->addComponent(new GamePhysics::CContainerColliderComponent(400));
+	//container->getTransform()->setLocalPosition(0, 0);
+	//container->getTransform()->setLocalScale(400, 400);
 
-	rigidBodyContainter->setIsKinematic(true);
-	rigidBodyContainter->setElasticity(0);
+	//rigidBodyContainter->setIsKinematic(true);
+	//rigidBodyContainter->setElasticity(0);
 
-	//New entity - circle -------------------------------------------------------------------------------------------------------
-	GameEngine::Entity* circle = new GameEngine::Entity();
-	circle->addComponent(new GameGraphics::ShapeComponent(GameGraphics::CIRCLE));
+	////New entity - circle -------------------------------------------------------------------------------------------------------
+	//GameEngine::Entity* circle = new GameEngine::Entity();
+	//circle->addComponent(new GameGraphics::ShapeComponent(GameGraphics::CIRCLE));
 
-	GamePhysics::RigidBodyComponent* rigidBodyCircle = circle->addComponent <GamePhysics::RigidBodyComponent>();
-	circle->addComponent(new GamePhysics::CircleColliderComponent(30));
+	//GamePhysics::RigidBodyComponent* rigidBodyCircle = circle->addComponent <GamePhysics::RigidBodyComponent>();
+	//circle->addComponent(new GamePhysics::CircleColliderComponent(30));
 
-	circle->getTransform()->setLocalPosition( 410, 410 );
-	circle->getTransform()->setLocalScale(30, 30);
+	//circle->getTransform()->setLocalPosition( 410, 410 );
+	//circle->getTransform()->setLocalScale(30, 30);
 
-	rigidBodyCircle->setElasticity(1.3);
+	//rigidBodyCircle->setElasticity(1.3);
 
-	//New entity - box -----------------------------------------------------------------------------------------------------------
-	GameEngine::Entity* box = new GameEngine::Entity();
-	box->addComponent(new GameGraphics::ShapeComponent(GameGraphics::BOX));
+	////New entity - box -----------------------------------------------------------------------------------------------------------
+	//GameEngine::Entity* box = new GameEngine::Entity();
+	//box->addComponent(new GameGraphics::ShapeComponent(GameGraphics::BOX));
 
-	GamePhysics::RigidBodyComponent* rigidBodyBox = box->addComponent <GamePhysics::RigidBodyComponent>();
-	box->addComponent(new GamePhysics::AABBColliderComponent(30, 30));
+	//GamePhysics::RigidBodyComponent* rigidBodyBox = box->addComponent <GamePhysics::RigidBodyComponent>();
+	//box->addComponent(new GamePhysics::AABBColliderComponent(30, 30));
 
-	box->getTransform()->setLocalPosition(410, 390);
-	box->getTransform()->setLocalScale(30, 30);
+	//box->getTransform()->setLocalPosition(410, 390);
+	//box->getTransform()->setLocalScale(30, 30);
 
-	//rigidBodyBox->setGravity(0);
-	//rigidBodyBox->setIsKinematic(true);
-	rigidBodyBox->setElasticity(1.3);
+	////rigidBodyBox->setGravity(0);
+	////rigidBodyBox->setIsKinematic(true);
+	//rigidBodyBox->setElasticity(1.3);
 
-	addEntity(container);
-	addEntity(circle);
-	//addEntity(circle2);
-	addEntity(box);
+	//addEntity(container);
+	//addEntity(circle);
+	////addEntity(circle2);
+	//addEntity(box);
+
+	GameEngine::Entity* spaceShip = new GameEngine::Entity();
+
+	spaceShip->addComponent<GameGraphics::SpriteComponent>()->setTexture("spaceship.png");
+	spaceShip->addComponent<RotationComponent>();
+	spaceShip->getTransform()->setLocalScale(500, 500);
+
+	addEntity(spaceShip);
 }
 
 void TestScene::onUpdate(double deltaTime)

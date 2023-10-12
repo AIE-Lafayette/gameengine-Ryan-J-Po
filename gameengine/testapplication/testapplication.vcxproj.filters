@@ -24,9 +24,15 @@
     <ClCompile Include="TestScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RotationComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TestScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RotationComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -35,6 +41,12 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="GizmoShader.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="SpriteShader.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="SpriteShader.vert">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>
