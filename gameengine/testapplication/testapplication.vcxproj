@@ -154,6 +154,8 @@
   <ItemGroup>
     <None Include="GizmoShader.frag" />
     <None Include="GizmoShader.vert" />
+    <None Include="Rainfall.frag" />
+    <None Include="Rainfall.vert" />
     <None Include="SpriteShader.frag" />
     <None Include="SpriteShader.vert" />
   </ItemGroup>

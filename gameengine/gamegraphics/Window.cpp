@@ -78,7 +78,7 @@ void GameGraphics::Window::open()
 void GameGraphics::Window::beginDrawing()
 {
 	//Setting the color to draw over the screen.
-	glClearColor(0.1, 0, 4, 0);
+	glClearColor(0, 0, 0, 0);
 	//Draw over all elements on the screen.
 	glClear(GL_COLOR_BUFFER_BIT);
 

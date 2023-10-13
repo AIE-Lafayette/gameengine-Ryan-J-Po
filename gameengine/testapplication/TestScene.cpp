@@ -56,9 +56,9 @@ void TestScene::onStart()
 
 	GameEngine::Entity* spaceShip = new GameEngine::Entity();
 
-	spaceShip->addComponent<GameGraphics::SpriteComponent>()->setTexture("spaceship.png");
-	spaceShip->addComponent<RotationComponent>();
-	spaceShip->getTransform()->setLocalScale(500, 500);
+	spaceShip->addComponent<GameGraphics::SpriteComponent>()->setTexture("pixelflowersmall.png");
+	//spaceShip->addComponent<RotationComponent>();
+	spaceShip->getTransform()->setLocalScale(124, 64);
 
 	addEntity(spaceShip);
 }
