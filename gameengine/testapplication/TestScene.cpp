@@ -8,6 +8,7 @@
 #include "Project1/Input.h"
 #include "gamegraphics/SpriteComponent.h"
 #include "RotationComponent.h"
+#include "gamegraphics/RainfallComponent.h"
 #include <cstdlib>
 
 void TestScene::onStart()
@@ -54,13 +55,14 @@ void TestScene::onStart()
 	////addEntity(circle2);
 	//addEntity(box);
 
-	GameEngine::Entity* spaceShip = new GameEngine::Entity();
+	GameEngine::Entity* rain = new GameEngine::Entity();
 
-	spaceShip->addComponent<GameGraphics::SpriteComponent>()->setTexture("pixelflowersmall.png");
+	GameGraphics::RainfallComponent* rainfallSprite = new GameGraphics::RainfallComponent("pixelflowersmall.png");
+	rain->addComponent(rainfallSprite);
 	//spaceShip->addComponent<RotationComponent>();
-	spaceShip->getTransform()->setLocalScale(124, 64);
+	rain->getTransform()->setLocalScale(100, 50);
 
-	addEntity(spaceShip);
+	addEntity(rain);
 }
 
 void TestScene::onUpdate(double deltaTime)

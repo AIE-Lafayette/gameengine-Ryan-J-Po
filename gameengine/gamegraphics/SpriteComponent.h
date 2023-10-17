@@ -13,6 +13,7 @@ namespace GameGraphics
 		SpriteComponent(const char* texturePath, const char* vertexShader, const char* fragShader);
 
 		GameMath::Vector4 getColor() { return m_color; }
+		GameGraphics::Shader* getShader() { return m_spriteShader; }
 
 		void setColor(GameMath::Vector4 color) { m_color = color; }
 		void setTexture(const char* texturePath);

@@ -138,6 +138,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Gizmos.h" />
+    <ClInclude Include="RainfallComponent.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShapeComponent.h" />
     <ClInclude Include="SpriteComponent.h" />
@@ -146,6 +147,7 @@
   <ItemGroup>
     <ClCompile Include="Gizmos.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="RainfallComponent.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShapeComponent.cpp" />
     <ClCompile Include="SpriteComponent.cpp" />
