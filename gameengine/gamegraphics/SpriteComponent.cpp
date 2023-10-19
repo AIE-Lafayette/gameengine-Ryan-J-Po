@@ -102,8 +102,8 @@ void GameGraphics::SpriteComponent::draw()
 	
 	float transformData[] =
 	{
-		normalX.x, normalY.x, position.x,
-		normalX.y, normalY.y, position.y,
+		normalX.x, normalY.x, 0,
+		normalX.y, normalY.y, 0,
 		transform.m30, transform.m31, transform.m33
 	};
 

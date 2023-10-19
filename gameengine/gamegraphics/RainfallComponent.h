@@ -11,7 +11,7 @@ namespace GameGraphics
 		void update(double deltaTime) override;
 		
 	private:
-		float m_offsetX = 0;
-		float m_offsetY = 0;
+		double m_offsetX = 0;
+		double m_offsetY = 0;
 	};
 }

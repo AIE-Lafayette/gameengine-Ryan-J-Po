@@ -57,50 +57,56 @@ void TestScene::onStart()
 
 	GameEngine::Entity* rain = new GameEngine::Entity();
 
-	GameGraphics::RainfallComponent* rainfallSprite = new GameGraphics::RainfallComponent("pixelflowersmall.png");
+	rain->getTransform()->setLocalPosition(0, 0);
+
+	GameGraphics::RainfallComponent* rainfallSprite = new GameGraphics::RainfallComponent("raintest2.png");
 	rain->addComponent(rainfallSprite);
-	//spaceShip->addComponent<RotationComponent>();
-	rain->getTransform()->setLocalScale(100, 50);
+	//rain->addComponent<RotationComponent>();
+	rain->getTransform()->setLocalScale(800, 600);
 
 	addEntity(rain);
+
+	GameEngine::Entity* shop = new GameEngine::Entity();
+
+	GameGraphics::SpriteComponent* shopSprite = new GameGraphics::SpriteComponent("Cool_night_shop-0.png");
+	shop->addComponent(shopSprite);
+	//rain->addComponent<RotationComponent>();
+	shop->getTransform()->setLocalScale(800, 600);
+
+	addEntity(shop);
 }
 
 void TestScene::onUpdate(double deltaTime)
 {
 	if (Input::getLeftMouseButton())
-	{
-		GameEngine::Entity* obj = new GameEngine::Entity();
-		obj->getTransform()->setLocalPosition(Input::getMousePos().x, Input::getMousePos().y);
-		obj->getTransform()->setLocalScale({ 20, 20, 0 });
+	{	
+		//GameEngine::Entity* rain = new GameEngine::Entity();
 
-		GameGraphics::ShapeComponent* shapeComponent = new GameGraphics::ShapeComponent(GameGraphics::CIRCLE);
+		//rain->getTransform()->setLocalPosition(Input::getMousePos().x, Input::getMousePos().y);
 
-		obj->addComponent(shapeComponent);
-		obj->addComponent(new GamePhysics::CircleColliderComponent(20));
+		//GameGraphics::RainfallComponent* rainfallSprite = new GameGraphics::RainfallComponent("rain.png");
+		//rain->addComponent(rainfallSprite);
+		////rain->addComponent<RotationComponent>();
+		//rain->getTransform()->setLocalScale(100, 100);
 
-		GamePhysics::RigidBodyComponent* rigidBodyObj = obj->addComponent <GamePhysics::RigidBodyComponent>();
-		rigidBodyObj->setElasticity(1.3);
-
-		//shapeComponent->setColor((unsigned int)obj);
-		addEntity(obj);
-
+		//addEntity(rain);
 	}
 	if (Input::getRightMouseButton())
 	{
-		GameEngine::Entity* obj = new GameEngine::Entity();
-		obj->getTransform()->setLocalPosition(Input::getMousePos().x, Input::getMousePos().y);
-		obj->getTransform()->setLocalScale({ 20, 20, 0 });
+		//GameEngine::Entity* obj = new GameEngine::Entity();
+		//obj->getTransform()->setLocalPosition(Input::getMousePos().x, Input::getMousePos().y);
+		//obj->getTransform()->setLocalScale({ 20, 20, 0 });
 
-		GameGraphics::ShapeComponent* shapeComponent = new GameGraphics::ShapeComponent(GameGraphics::BOX);
+		//GameGraphics::ShapeComponent* shapeComponent = new GameGraphics::ShapeComponent(GameGraphics::BOX);
 
-		obj->addComponent(shapeComponent);
-		obj->addComponent(new GamePhysics::AABBColliderComponent(20,20));
+		//obj->addComponent(shapeComponent);
+		//obj->addComponent(new GamePhysics::AABBColliderComponent(20,20));
 
-		GamePhysics::RigidBodyComponent* rigidBodyObj = obj->addComponent <GamePhysics::RigidBodyComponent>();
-		rigidBodyObj->setElasticity(1.3);
+		//GamePhysics::RigidBodyComponent* rigidBodyObj = obj->addComponent <GamePhysics::RigidBodyComponent>();
+		//rigidBodyObj->setElasticity(1.3);
 
-		//shapeComponent->setColor((unsigned int)obj);
-		addEntity(obj);
+		////shapeComponent->setColor((unsigned int)obj);
+		//addEntity(obj);
 
 	}
 }

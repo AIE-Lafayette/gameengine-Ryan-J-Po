@@ -138,29 +138,39 @@ void GameGraphics::Shader::use()
 {
 	glUseProgram(m_shaderProgram);
 
+	glUniform1i(glGetUniformLocation(m_shaderProgram, m_boolData.name), m_boolData.data[0]);
+	glUniform1i(glGetUniformLocation(m_shaderProgram, m_intData.name), m_intData.data[0]);
+	glUniform1f(glGetUniformLocation(m_shaderProgram, m_floatData.name), m_floatData.data[0]);
+	glUniform2f(glGetUniformLocation(m_shaderProgram, m_vec2Data.name), m_vec2Data.data[0], m_vec2Data.data[1]);
+
 }
 
-void GameGraphics::Shader::setBool(const char* name, bool value) const
+void GameGraphics::Shader::setBool(const char* name, bool value)
 {
-	glUniform1i(glGetUniformLocation(m_shaderProgram, name), value);
+	m_boolData.name = name;
+	m_boolData.data[0] = value;
 }
 
-void GameGraphics::Shader::setInt(const char* name, int value) const
+void GameGraphics::Shader::setInt(const char* name, int value)
 {
-	glUniform1i(glGetUniformLocation(m_shaderProgram, name), value);
+	m_intData.name = name;
+	m_intData.data[0] = value;
 }
 
-void GameGraphics::Shader::setFloat(const char* name, float value) const
+void GameGraphics::Shader::setFloat(const char* name, float value)
 {
-	glUniform1f(glGetUniformLocation(m_shaderProgram, name), value);
+	m_floatData.name = name;
+	m_floatData.data[0] = value;
 }
 
-void GameGraphics::Shader::setVec2(const char* name, float x, float y) const
+void GameGraphics::Shader::setVec2(const char* name, float x, float y)
 {
-	glUniform2f(glGetUniformLocation(m_shaderProgram, name), x, y);
+	m_vec2Data.name = name;
+	m_vec2Data.data[0] = x;
+	m_vec2Data.data[1] = y;
 }
 
-void GameGraphics::Shader::setColor(const char* name, float x, float y, float z, float w) const
+void GameGraphics::Shader::setColor(const char* name, float x, float y, float z, float w)
 {
 	glUniform4f(glGetUniformLocation(m_shaderProgram, name), x, y, z, w);
 }

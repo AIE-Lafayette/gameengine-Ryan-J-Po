@@ -26,7 +26,7 @@ void GameEngine::Engine::run()
 	double accumulatedTime = 0;
 	
 
-	m_windowWrapper = new GameGraphics::Window(800, 800, "Test Application");
+	m_windowWrapper = new GameGraphics::Window(800, 600, "Test Application");
 	m_windowWrapper->open();
 
 	start();
