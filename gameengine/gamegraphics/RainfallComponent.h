@@ -8,6 +8,7 @@ namespace GameGraphics
 	{
 	public:
 		RainfallComponent(const char* texturePath) : GameGraphics::SpriteComponent(texturePath, "Rainfall.vert", "Rainfall.frag") {}
+		//Constantly updates the texture by the X and Y offsets. Sets offsetX to be 0 and offsetY to be incremented by deltaTime.
 		void update(double deltaTime) override;
 		
 	private:

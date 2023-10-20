@@ -141,6 +141,7 @@
     <ClInclude Include="RainfallComponent.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShapeComponent.h" />
+    <ClInclude Include="SnowfallComponent.h" />
     <ClInclude Include="SpriteComponent.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
@@ -150,6 +151,7 @@
     <ClCompile Include="RainfallComponent.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShapeComponent.cpp" />
+    <ClCompile Include="SnowfallComponent.cpp" />
     <ClCompile Include="SpriteComponent.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
